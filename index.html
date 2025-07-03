@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png"> 
+  <title>Frontend Mentor | E-commerce product page</title>
+  
+</head>
+<body class="font-sans">
+    <header class=" flex justify-between items-center p-4 border-b md:mx-32 lg:mx-32 mb:9">
+        <div class=" flex items-center gap-4">
+                <img class="w-6 py-6 mx-4 md:hidden" id="menuToggle" src="./image/images/icon-menu.svg" alt="">
+                <h1 class="text-xl font-bold ">Sneakers</h2>
+            <nav class="md:flex hidden ml-6 gap-6">
+                <a class="text-gray-400" href="#">Collections</a>
+                <a  class="text-gray-400" href="#">Men</a>
+                <a  class="text-gray-400" href="#">Women</a>
+                <a  class="text-gray-400" href="#">About</a>
+                <a  class="text-gray-400" href="#">Contact</a>
+            </nav>
+
+            <!-- Mobile Menu -->
+            <div id="navButton" class="fixed inset-0 bg-orange-600 text-white z-50 p-6 w-64 transform -translate-x-full transition-transform duration-300 md:hidden">
+                <button id="closeMenu" class="mb-4">
+                    <img src="./image/images/icon-close.svg" alt="Close" class="w-4">
+                </button>
+                <nav class="flex flex-col gap-4 text-lg">
+                    <a href="#">Collections</a>
+                    <a href="#">Men</a>
+                    <a href="#">Women</a>
+                    <a href="#">About</a>
+                    <a href="#">Contact</a>
+                </nav>
+            </div>
+
+        </div>
+        <div class="flex items-center gap-4">
+            <img class= "w-6 h-6" id="cartButton"  src="./image/images/icon-cart.svg" alt="">
+            <img class= "w-8 rounded-full" src="./image/images/image-avatar.png" alt="user avatar">
+        </div>
+    </header>
+
+   <main class="grid md:grid-cols-2 gap-8 p-6 md:mx-32 lg:mx-32 md:mt-24 lg:md-24">
+        <section class="space-y-4">
+            <switch>
+                <img class="rounded-lg w-96" src="./image/images/image-product-1.jpg" alt="Main product image">
+            </switch>
+             <div class="flex gap-4">
+                <img src="./image/images/image-product-1-thumbnail.jpg" class="w-20 rounded-lg cursor-pointer border-2 border-transparent hover:border-orange-500 thumbnail">
+                <img src="./image/images/image-product-2-thumbnail.jpg" class="w-20 rounded-lg cursor-pointer border-2 border-transparent hover:border-orange-500 thumbnail">
+                <img src="./image/images/image-product-3-thumbnail.jpg" class="w-20 rounded-lg cursor-pointer border-2 border-transparent hover:border-orange-500 thumbnail">
+                <img src="./image/images/image-product-4-thumbnail.jpg" class="w-20 rounded-lg cursor-pointer border-2 border-transparent hover:border-orange-500 thumbnail">
+                <!-- More thumbnails -->
+            </div>
+            <!-- Cart Dropdown -->
+           <div id="cartDropdown" class="w-80 hidden absolute top-16 right-6 bg-white shadow-lg rounded-lg z-40 p-4">
+              <h3 class="font-bold border-b pb-2 mb-2">Cart</h1>
+              <div id="cartContent" class="text-gray-500 text-center">Your cart is empty.</div>
+           </div>
+
+        </section>
+        <article class="space-y-4 ">
+            <h2 class="text-gray-400 font-bold uppercase mt-20 text-sm tracking-wide">Sneaker company</h2>
+            <h1 class="text-4xl font-bold">Fall limited edition sneakers</h1>
+            <p classs=" text-sm text-gray-400"> These low-profile sneakers are your perfect casual wear companion. Featuring a durable rubber outer sole, they'll withstand everything the weather can offer.</p>
+
+            <div class="flex gap-8">
+                <span class="text-2xl font-bold">$250.00</span>
+                <span class="bg-black text-white text-sm rounded font-bold  px-2 py-1 m-1">50%</span>
+            </div>
+                <p class="line-through text-gray-400">$250.00</p>
+            <div class="flex gap-4 items-center">
+                <div class="flex bg-gray-100 rounded justify-around gap-10 px-6 py-3 ">
+                    <button id="decreaseQty" class="text-orange-600 text text-xl">-</button>
+                    <span id="quantity" class="px-4">0</span>
+                    <button id="increaseQty" class=" text-xl text-orange-600">+</button>
+                </div>
+                    <button class="bg-orange-500 hover:bg-orange-600 text-black px-6 py-3 rounded shadow-lg">🛒 Add to cart</button>
+            </div>   
+        </article>  
+          
+   </main>
+   <!-- LIGHTBOX Modal -->
+<div id="lightbox" class="fixed inset-0 bg-black bg-opacity-80 flex items-center justify-center z-50 hidden">
+  <div class="relative max-w-xl w-full">
+    <button id="closeLightbox" class="absolute top-2 right-2 text-white text-3xl">&times;</button>
+    <img id="lightboxImage" src="./image/images/image-product-1.jpg" alt="Enlarged image" class="rounded w-full">
+    
+    <div class="flex justify-between mt-4">
+      <button id="prevBtn" class="text-white text-2xl px-4">&larr;</button>
+      <button id="nextBtn" class="text-white text-2xl px-4">&rarr;</button>
+    </div>
+  </div>
+</div>
+
+<script>
+    const cartButton = document.getElementById("cartButton");
+    const cartDropdown = document.getElementById("cartDropdown");
+    const menuToggle = document.getElementById("menuToggle");
+    const navBtn = document.getElementById("navButton");
+    const closeMenu = document.getElementById("closeMenu");
+
+    cartButton.addEventListener("click",()=>{
+        cartDropdown.classList.toggle("hidden");
+    });
+    menuToggle.addEventListener("click",()=>{
+          navBtn.classList.remove("-translate-x-full");
+    });
+    closeMenu.addEventListener("click",()=>{
+        navBtn.classList.add("-translate-x-full");
+    })
+</script>
+
+</body>
+</html>
